@@ -11,7 +11,7 @@ def connect_db(app):
     db.init_app(app)
 
 
-DEFAULT_IMG_URL = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.phpfoxer.com%2Fblog%2Fphpfox-default-avatar&psig=AOvVaw3U-5h03AE38bWKdxjJVzEo&ust=1622237580174000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPi8p4ro6vACFQAAAAAdAAAAABAF'
+DEFAULT_IMG_URL = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png'
 
 
 class User(db.Model):

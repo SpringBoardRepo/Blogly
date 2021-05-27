@@ -1,6 +1,5 @@
 """Blogly application."""
 
-import re
 from flask import Flask, request, redirect
 from flask.templating import render_template
 from models import db, connect_db, User
@@ -38,20 +37,34 @@ def new_user():
 def add_user():
     first_name = request.form['first-name']
     last_name = request.form['last-name']
-    img_url = request.form['img-url']
-    img_url = img_url if img_url else None
+    img_url = request.form['img-url'] or None
 
-    user = User(first_name=first_name, last_name=last_name, img_url=img_url)
+    new_user = User(first_name=first_name,
+                    last_name=last_name, img_url=img_url)
+
+    db.session.add(new_user)
+    db.session.commit()
+    return redirect(f'/{new_user.id}')
+
+
+@app.route('/<int:user_id>/edit')
+def edit_user_form(user_id):
+    """Edit user info"""
+    user = User.query.get_or_404(user_id)
+    return render_template('edit_user.html', user=user)
+
+
+@app.route('/<int:user_id>/edit', methods=['POST'])
+def edit_user(user_id):
+    """Edit user info"""
+    user = User.query.get_or_404(user_id)
+    user.first_name = request.form['first-name']
+    user.last_name = request.form['last-name']
+    user.img_url = request.form['img-url'] or None
 
     db.session.add(user)
     db.session.commit()
     return redirect(f'/{user.id}')
-
-
-@app.route('/edit')
-def edit_user():
-    """Edit user info"""
-    return render_template('edit_user.html')
 
 
 @app.route('/<int:user_id>/delete')

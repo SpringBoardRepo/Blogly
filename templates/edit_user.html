@@ -13,25 +13,37 @@
   <body>
     <section class="container">
       <h2>Edit User Form</h2>
-      <form action="/" method="POST">
+      <form action="/{{user.id}}/edit" method="POST">
         <p>
           First Name
           <input
             type="text"
             placeholder=" Enter a First Name"
             name="first-name"
+            value="{{user.first_name}}"
           />
         </p>
         <p>
           Last Name
-          <input type="text" placeholder="Enter a Last Name" name="last-name" />
+          <input
+            type="text"
+            placeholder="Enter a Last Name"
+            name="last-name"
+            value="{{user.last_name}}"
+          />
         </p>
         <p>
           Image-Url
-          <input type="url" placeholder="Provide Image Url" name="img-url" />
+          <input
+            type="url"
+            placeholder="Provide Image Url"
+            name="img-url"
+            value="{{user.img_url}}"
+          />
         </p>
         <button class="btn btn-success">Edit</button>
       </form>
+
       <form action="/">
         <button class="btn btn-secondary">Cancel</button>
       </form>
