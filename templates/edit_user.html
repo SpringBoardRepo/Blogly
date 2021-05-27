@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Edit</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <section class="container">
+      <h2>Edit User Form</h2>
+      <form action="/" method="POST">
+        <p>
+          First Name
+          <input
+            type="text"
+            placeholder=" Enter a First Name"
+            name="first-name"
+          />
+        </p>
+        <p>
+          Last Name
+          <input type="text" placeholder="Enter a Last Name" name="last-name" />
+        </p>
+        <p>
+          Image-Url
+          <input type="url" placeholder="Provide Image Url" name="img-url" />
+        </p>
+        <button class="btn btn-success">Edit</button>
+      </form>
+      <form action="/">
+        <button class="btn btn-secondary">Cancel</button>
+      </form>
+    </section>
+  </body>
+</html>
