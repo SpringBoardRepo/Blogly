@@ -1,0 +1,31 @@
+{% extends 'base.html'%} {% block content %}
+<section class="container">
+  <h2>Edit Post</h2>
+  <form class="form-group" action="/post/{{post.id}}/edit" method="POST">
+    <p>
+      Title
+      <input
+        type="text"
+        placeholder=" Title"
+        name="title"
+        value="{{post.title}}"
+      />
+    </p>
+    <p>
+      Content
+      <input
+        type="text"
+        placeholder="Content"
+        name="content"
+        value="{{post.content}}"
+      />
+    </p>
+
+    <button class="btn btn-success">Edit</button>
+  </form>
+
+  <form action="/post/{{post.id}}">
+    <button class="btn btn-secondary">Cancel</button>
+  </form>
+</section>
+{% endblock %}

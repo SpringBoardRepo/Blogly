@@ -1,0 +1,13 @@
+{% extends 'base.html'%} {%block content %}
+<div class="container">
+  <h3>{{post.title}}</h3>
+  <p>{{post.content}}</p>
+  <div class="is-grouped">
+    <a class="btn btn-success btn-sm" href="/post/{{post.id}}/edit">Edit</a>
+    <button class="btn btn-danger btn-sm">Delete</button>
+
+    <a class="btn btn-primary btn-sm" href="/{{post.id}}">Cancel</a>
+  </div>
+</div>
+
+{%endblock%}
