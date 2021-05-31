@@ -30,6 +30,9 @@ class User(db.Model):
     img_url = db.Column(db.String, nullable=False,
                         default=DEFAULT_IMG_URL)
 
+    posts = db.relationship('Post', backref='user',
+                            cascade="all")
+
 
 class Post(db.Model):
 
@@ -44,6 +47,3 @@ class Post(db.Model):
     created_at = db.Column(db.Text)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
-    user = db.relationship('User', backref='post',
-                           cascade="all")
