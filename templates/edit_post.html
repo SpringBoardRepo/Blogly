@@ -1,5 +1,5 @@
 {% extends 'base.html'%} {% block content %}
-<section class="container">
+<div class="container">
   <h2>Edit Post</h2>
   <form class="form-group" action="/post/{{post.id}}/edit" method="POST">
     <p>
@@ -12,20 +12,26 @@
       />
     </p>
     <p>
-      Content
-      <input
+      <!-- <input
         type="text"
         placeholder="Content"
         name="content"
         value="{{post.content}}"
-      />
+      /> -->
+       Content
+      <textarea
+        class="form-control"
+        name="content" 
+        style="height: 100px"
+      >"{{post.content}}"</textarea>
     </p>
-
-    <button class="btn btn-success">Edit</button>
+   <div class="row float-right">
+    <button class="btn btn-success btn-sm ">Edit</button>
   </form>
 
   <form action="/post/{{post.id}}">
-    <button class="btn btn-secondary">Cancel</button>
+    <button class="btn btn-secondary ml-2 btn-sm ">Cancel</button>
   </form>
-</section>
+  </div>
+</div>
 {% endblock %}
