@@ -29,12 +29,10 @@
         value="{{user.img_url}}"
       />
     </p>
-
-    <button class="btn btn-success">Edit</button>
-  </form>
-
-  <form action="/">
-    <button class="btn btn-secondary">Cancel</button>
+    <div class="row">
+      <button class="btn btn-success">Edit</button>
+      <a href="/{{user.id}}" class="btn btn-primary btn-sm ml-2">Cancel</a>
+    </div>
   </form>
 </section>
 {% endblock %}
