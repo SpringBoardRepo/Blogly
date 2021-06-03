@@ -22,6 +22,11 @@
         style="height: 100px"
       ></textarea>
     </p>
+     {% for tag in tags %}
+    <ul>
+       <input type = 'checkbox'>{{tag.name}}
+    </ul>
+    {% endfor %}
     <div class="row float-right">
     <button class="btn btn-success btn-sm">Add</button>
   </form>

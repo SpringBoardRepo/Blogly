@@ -12,12 +12,6 @@
       />
     </p>
     <p>
-      <!-- <input
-        type="text"
-        placeholder="Content"
-        name="content"
-        value="{{post.content}}"
-      /> -->
        Content
       <textarea
         class="form-control"
@@ -25,6 +19,13 @@
         style="height: 100px"
       >"{{post.content}}"</textarea>
     </p>
+    {% for tag in tags %}
+    <ul>
+       <input type = 'checkbox' value='{{tag.id}}' {% if tag in post.tags %}checked{% endif %} name='tags'>{{tag.name}}
+    </ul>
+    {% endfor %}
+
+
    <div class="row float-right">
     <button class="btn btn-success btn-sm ">Edit</button>
   </form>

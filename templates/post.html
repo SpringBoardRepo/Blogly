@@ -4,12 +4,12 @@
   <p>{{post.content}}</p>
 
   <div class="row">
+    {% if post.tags %}
     <h5>Tags:</h5>
     {% for tag in post.tags %}
     <a href="/tags/{{tag.id}}"
       ><i class="badge badge-primary ml-2">{{tag.name}}</i></a
-    >
-    {% endfor %}
+    >{% endfor %} {% endif %}
   </div>
   <div class="is-grouped mt-4">
     <a class="btn btn-success btn-sm" href="/post/{{post.id}}/edit">Edit</a>

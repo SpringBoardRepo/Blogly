@@ -10,7 +10,10 @@
   </ul>
   <div class="row">
     <button class="btn btn-info btn-sm">Edit</button>
-    <button class="btn btn-danger btn-sm ml-2">Delete</button>
+    <form action="/tags/{{tag.id}}/delete" method="Post">
+      <button class="btn btn-danger btn-sm ml-2">Delete</button>
+    </form>
+    <a href="/tags" class="btn btn-secondary btn-sm ml-2">Go back!</a>
   </div>
 </div>
 {% endblock %}
