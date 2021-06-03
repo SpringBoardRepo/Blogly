@@ -1,14 +1,19 @@
 """Blogly application."""
 
-from flask import Flask, request, redirect, flash
+from flask import Flask, request, redirect
+# from flask_debugtoolbar import DebugToolbarExtension
 from flask.templating import render_template
-from models import db, connect_db, User, Post
+from models import db, connect_db, User, Post, PostTag, Tag
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/blogly?user=postgres&password=postgresql'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'flaskblogly'
+
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+
+# toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
 
@@ -17,6 +22,7 @@ connect_db(app)
 def home_page():
     """"list all users"""
     users = User.query.order_by(User.first_name, User.last_name).all()
+
     return render_template('user.html', users=users)
 
 
@@ -127,6 +133,60 @@ def edit_user_post(post_id):
 @app.route('/post/<int:post_id>/delete')
 def delete_post(post_id):
     """Delete user's post"""
-    Post.query.filter_by(id=post_id).delete()
+    post = Post.query.get(post_id)
+
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(f'/{post.user_id}')
+
+
+########################################################################################
+"""Tags Route"""
+
+
+@app.route('/tags')
+def tag_list():
+    tags = Tag.query.all()
+    return render_template('tag.html', tags=tags)
+
+
+@app.route('/tags/<int:tag_id>')
+def get_tag(tag_id):
+    tag = Tag.query.get(tag_id)
+    return render_template('tag_show.html', tag=tag)
+
+
+@app.route('/tags/new')
+def create_tag():
+    """Create tag form"""
+    posts = Post.query.all()
+    return render_template('add_tag.html', posts=posts)
+
+
+@app.route('/tags/new', methods=['Post'])
+def add_tag():
+    tag = request.form['tag']
+    new_tag = Tag(name=tag)
+
+    db.session.add(new_tag)
     db.session.commit()
     return redirect('/')
+
+
+@app.route('/tags/<int:tag_id>/edit')
+def edit_tag_form(tag_id):
+    """Show edit form for a tag."""
+    tag = Tag.query.get(tag_id)
+    posts = Post.query.all()
+    return render_template('edit_tag.html', tag=tag, posts=posts)
+
+
+@app.route('/tags/<int:tag_id>/edit', methods=['Post'])
+def edit_tag(tag_id):
+    """Process edit form, edit tag, and redirects to the tags list."""
+    tag = Tag.query.get(tag_id)
+    tag.name = request.form['tag']
+
+    db.session.add(tag)
+    db.session.commit()
+    return redirect('/tags')
