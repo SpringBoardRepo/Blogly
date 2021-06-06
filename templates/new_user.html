@@ -1,0 +1,23 @@
+{% extends 'base.html'%} {% block content %}
+<section class="container">
+  <h2>New User Form</h2>
+  <form action="/" method="POST">
+    <p>
+      First Name
+      <input type="text" placeholder=" Enter a First Name" name="first-name" />
+    </p>
+    <p>
+      Last Name
+      <input type="text" placeholder="Enter a Last Name" name="last-name" />
+    </p>
+    <p>
+      Image-Url
+      <input type="url" placeholder="Provide Image Url" name="img-url" />
+    </p>
+    <div class="row">
+      <button class="btn btn-success btn-sm">Add</button>
+      <a href="/" class="btn btn-primary btn-sm ml-2">Cancel</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

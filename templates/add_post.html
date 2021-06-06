@@ -1,0 +1,40 @@
+{% extends 'base.html'%} {% block content %}
+<div class="container">
+  <h2>Add Post for {{user.first_name}}</h2>
+  <form action="/user/{{user.id}}/add_post" method="Post">
+    <p>
+      Title
+      <input
+        type="text"
+        class="form-control"
+        name="post-title"
+        id="title"
+        placeholder="Title"
+      />
+    </p>
+    <p>
+      Content
+      <textarea
+        class="form-control"
+        name="post-content"
+        id="content"
+        placeholder="Content"
+        style="height: 100px"
+      ></textarea>
+    </p>
+     {% for tag in tags %}
+    <ul>
+       <input type = 'checkbox'>{{tag.name}}
+    </ul>
+    {% endfor %}
+    <div class="row float-right">
+    <button class="btn btn-success btn-sm">Add</button>
+  </form>
+ 
+    <form action="/{{user.id}}">
+      <button class="btn btn-primary btn-sm ml-2">Cancel</button>
+    </form>
+  </div>
+</div>
+
+{%endblock%}

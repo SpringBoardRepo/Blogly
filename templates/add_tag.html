@@ -1,0 +1,12 @@
+{% extends 'base.html'%} {%block content %}
+<div class="container">
+  <h1>Create a tag</h1>
+  <form action="/tags/new" class="form-group" method="POST">
+    Name <input type="text" placeholder="Enter a name for the tag" name="tag" />
+    <div class="row mt-4">
+      <button class="btn-sm btn btn-success ml-3">Add</button>
+      <a href="/tags" class="btn-sm btn btn-primary ml-2">Cancel </a>
+    </div>
+  </form>
+</div>
+{% endblock %}

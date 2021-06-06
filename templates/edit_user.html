@@ -1,0 +1,38 @@
+{% extends 'base.html'%} {% block content %}
+<section class="container">
+  <h2>Edit User Form</h2>
+  <form class="form-group" action="/{{user.id}}/edit" method="POST">
+    <p>
+      First Name
+      <input
+        type="text"
+        placeholder=" Enter a First Name"
+        name="first-name"
+        value="{{user.first_name}}"
+      />
+    </p>
+    <p>
+      Last Name
+      <input
+        type="text"
+        placeholder="Enter a Last Name"
+        name="last-name"
+        value="{{user.last_name}}"
+      />
+    </p>
+    <p>
+      Image-Url
+      <input
+        type="url"
+        placeholder="Provide Image Url"
+        name="img-url"
+        value="{{user.img_url}}"
+      />
+    </p>
+    <div class="row">
+      <button class="btn btn-success">Edit</button>
+      <a href="/{{user.id}}" class="btn btn-primary btn-sm ml-2">Cancel</a>
+    </div>
+  </form>
+</section>
+{% endblock %}
